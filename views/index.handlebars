@@ -11,7 +11,7 @@
     <label for="burgerInput">Enter a name of a burger you want to eat!</label>
     <input type="text" class="form-control" id="burgerInput">
   </div>
-  <button type="submit" class="btn btn-success btn-lg">Submit</button>
+  <button type="submit" class="btn btn-success btn-lg" id="submitBtn">Submit</button>
 </form>
 
   {{#each burgers}}
@@ -31,7 +31,7 @@
         <img src="assets/img/burger.png" class="card-img-top" alt="Burger">
         <div class="card-body">
           <h5 class="card-title">{{ burger }}</h5>
-          <a href="#" class="btn btn-warning">Devour It!</a>
+          <button type="submit" class="btn btn-warning devourBtn" id="{{ id }}">Devour It!</button>
         </div>
       </div>
     </div>
