@@ -1,25 +1,42 @@
-<main class="container">
-    <div class="jumbotron jumbotron-fluid">
+
+<div class="jumbotron jumbotron-fluid bg-warning">
     <div class="container">
         <h1 class="display-4">Eat Da Burger</h1>
     </div>
-    </div>
+</div>
 
+<main class="container">
 <form>
   <div class="form-group">
     <label for="burgerInput">Enter a name of a burger you want to eat!</label>
     <input type="text" class="form-control" id="burgerInput">
   </div>
-  <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+  <button type="submit" class="btn btn-success btn-lg">Submit</button>
 </form>
 
-<div class="card" style="width: 18rem;">
-  <img src="../public/assets/img/burger.png" width="100" class="card-img-top" alt="Burger">
-  <div class="card-body">
-    <h5 class="card-title">{{Card title}}</h5>
-    <a href="#" class="btn btn-primary">Devour It!</a>
+  {{#each burgers}}
+  <div class="row">
+    {{#if devoured}}
+    <div class="col devoured float-right">
+      <div class="card float-right" style="width: 18rem;">
+        <img src="https://media.giphy.com/media/K4x1ZL36xWCf6/giphy.gif" class="card-img-top" alt="Burger">
+        <div class="card-body">
+          <h5 class="card-title">{{ burger }} Devoured</h5>
+        </div>
+      </div>
+    </div>
+    {{else}}
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src="assets/img/burger.png" class="card-img-top" alt="Burger">
+        <div class="card-body">
+          <h5 class="card-title">{{ burger }}</h5>
+          <a href="#" class="btn btn-warning">Devour It!</a>
+        </div>
+      </div>
+    </div>
+    {{/if}}
   </div>
-</div>
-
+  {{/each}}
 
 </main>
