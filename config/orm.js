@@ -1,26 +1,25 @@
-const db = require('./connection.js');
+const connection = require('./connection.js');
+const util = require('util');
+
+// promisify query
+const promiseQuery = util.promisify(connection.query).bind(connection);
 
 const orm = {
-    selectAll : function(table, callback){
+    selectAll : async function(table){
         const queryString = "SELECT * FROM ??";
-        db.query(queryString, [table], (err, result) => {
-            if (err) throw err;
-            callback(result);
-        })
+        const data = await promiseQuery(queryString, [table]);
+        // console.log(data)
+        return data;
     },
-    insertOne : function(table, column, value, callback){
-        const queryString = "INSERT INTO ?? (??) VALUES ?";
-        db.query(queryString, [table, column, value], (err, result) => {
-            if (err) throw err;
-            callback(result);
-        })
+
+    insertOne : async function(table, column, value){
+        const queryString = "INSERT INTO ?? SET ?? = ?";
+        await promiseQuery(queryString, [table, column, value]);
     },
-    updateOne : function(table, setColumn, setValue, whereCol, whereVal, callback){
-        const queryStrig = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
-        db.query(queryString, [table, setColumn, setValue, whereCol, whereVal], (err, result) => {
-            if (err) throw err;
-            callback(result);
-        })
+
+    updateOne : async function(table, setColumn, setValue, whereCol, whereVal, callback){
+        const queryString = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
+        await promiseQuery(queryString, [table, setColumn, setValue, whereCol, whereVal])
     }
 }
 
