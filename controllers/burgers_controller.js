@@ -15,7 +15,7 @@ routes.get('/', (req, res) => {
 
 // insert one burger
 routes.post('/api/burger', (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     burger.insert(req.body.burger)
     .then( () => {
         console.log(`Sucessfully inserted a new burger`)
