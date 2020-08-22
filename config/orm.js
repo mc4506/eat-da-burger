@@ -1,25 +1,25 @@
 const db = require('./connection.js');
 
 const orm = {
-    selectAll : function(table){
+    selectAll : function(table, callback){
         const queryString = "SELECT * FROM ??";
         db.query(queryString, [table], (err, result) => {
             if (err) throw err;
-            console.log(result);
+            callback(result);
         })
     },
-    insertOne : function(table, column, value){
+    insertOne : function(table, column, value, callback){
         const queryString = "INSERT INTO ?? (??) VALUES ?";
         db.query(queryString, [table, column, value], (err, result) => {
             if (err) throw err;
-            console.log(result);
+            callback(result);
         })
     },
-    updateOne : function(table, setColumn, setValue, whereCol, whereVal){
+    updateOne : function(table, setColumn, setValue, whereCol, whereVal, callback){
         const queryStrig = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
         db.query(queryString, [table, setColumn, setValue, whereCol, whereVal], (err, result) => {
             if (err) throw err;
-            console.log(result);
+            callback(result);
         })
     }
 }
