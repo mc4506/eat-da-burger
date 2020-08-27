@@ -24,13 +24,17 @@ $('#submitBtn').on('click', (event) => {
     const newBurger = {
         burger: $('#burgerInput').val().trim(),
     }
-
-    $.ajax("/api/burger", {
-        method: "POST",
-        data: newBurger
-    }).then( () => {
-        location.reload();
-    })
+    console.log(newBurger.burger);
+    if (newBurger.burger === "") {
+        $('#alertModal').modal('toggle');
+    } else {
+        $.ajax("/api/burger", {
+            method: "POST",
+            data: newBurger
+        }).then( () => {
+            location.reload();
+        })
+    }
 })
 
 $('.devourBtn').on('click', (event) => {
